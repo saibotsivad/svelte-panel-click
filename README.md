@@ -6,6 +6,25 @@ Small web component to determine if clicks occur inside or outside a panel.
 
 The normal way: `npm install --save svelte-panel-click`
 
+## use
+
+As a Svelte component:
+
+```html
+<PanelClick
+	on:clickExternal="click handler for external clicks"
+	on:clickInternal="click handler for internal clicks"
+>
+	<p>Inner panel text.</p>
+</PanelClick>
+<script>
+import PanelClick from 'svelte-panel-click'
+export default {
+	components: { PanelClick }
+}
+</script>
+```
+
 ## api
 
 Any time a click event happens within the `window`, this component
