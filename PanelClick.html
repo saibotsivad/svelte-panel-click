@@ -1,0 +1,19 @@
+<:Window on:click="clickHandler(event)" />
+
+<div ref:container>
+	{{yield}}
+</div>
+
+<script>
+export default {
+	methods: {
+		clickHandler(event) {
+			if (this.refs.container.contains(event.target)) {
+				this.fire('clickInternal', event)
+			} else {
+				this.fire('clickExternal', event)
+			}
+		}
+	}
+}
+</script>
