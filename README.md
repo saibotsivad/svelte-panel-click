@@ -48,9 +48,9 @@ export default {
 	components: { PanelClick },
 	methods: {
 		externalClickHandler(event) {
-			if (event.target === this.refs.button) {
-				// the click was on the "Show Panel" button
-				this.set({ visible: true })
+			if (event.target !== this.refs.button) {
+				// the click was *not* on the "Show Panel" button
+				this.set({ visible: false })
 			}
 		}
 	}
