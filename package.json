@@ -4,6 +4,11 @@
   "description": "Small web component to determine if clicks occur inside or outside a panel.",
   "main": "dist/PanelClick.cjs.js",
   "module": "dist/PanelClick.es2015.js",
+  "files": [
+    "dist/PanelClick.cjs.js",
+    "dist/PanelClick.es2015.js",
+    "dist/PanelClick.html"
+  ],
   "scripts": {
     "prebuild": "rm -rf dist && mkdir -p dist",
     "build": "npm run build:module && npm run build:legacy && npm run build:html",
