@@ -1,5 +1,7 @@
 # svelte-panel-click
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/saibotsivad/svelte-panel-click.svg)](https://greenkeeper.io/)
+
 Small web component to determine if clicks occur inside or outside a panel.
 
 ## install
