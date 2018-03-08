@@ -4,6 +4,7 @@
   "description": "Small web component to determine if clicks occur inside or outside a panel.",
   "main": "dist/PanelClick.cjs.js",
   "module": "dist/PanelClick.es2015.js",
+  "svelte": "PanelClick.html",
   "files": [
     "dist/PanelClick.cjs.js",
     "dist/PanelClick.es2015.js",
