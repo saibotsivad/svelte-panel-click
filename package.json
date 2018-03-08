@@ -6,6 +6,7 @@
   "module": "dist/PanelClick.es2015.js",
   "svelte": "PanelClick.html",
   "files": [
+    "PanelClick.html",
     "dist/PanelClick.cjs.js",
     "dist/PanelClick.es2015.js",
     "dist/PanelClick.html"
