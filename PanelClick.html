@@ -1,7 +1,7 @@
-<:Window on:click="clickHandler(event)" />
+<svelte:window on:click="clickHandler(event)" />
 
 <div ref:container>
-	{{yield}}
+	<slot></slot>
 </div>
 
 <script>
