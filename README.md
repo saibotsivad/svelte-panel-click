@@ -42,7 +42,7 @@ when click events outside the modal happen:
 
 ```html
 <p>Normal body text.</p>
-{{#if visible}}
+{#if visible}
 	<PanelClick
 		on:clickExternal="externalClickHandler(event)"
 		on:clickInternal="internalClickHandler(event)"
@@ -52,7 +52,7 @@ when click events outside the modal happen:
 			Hide Panel
 		</button>
 	</PanelClick>
-{{/if}}
+{/if}
 <p>More normal body text.</p>
 <button
 	ref:button
