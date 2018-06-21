@@ -27,8 +27,8 @@ export default {
 
 ## api
 
-Any time a click event happens within the `window`, this component
-emits one of two events:
+Any time *any* click event happens within the DOM `window`, this
+component emits one of two events:
 
 * `clickInternal` - When the click event happens *inside* the
 	component element.
@@ -71,6 +71,9 @@ export default {
 				// the click was *not* on the "Show Panel" button
 				this.set({ visible: false })
 			}
+		},
+		internalClickHandler(event) {
+			// the click happened inside the panel
 		}
 	}
 }
