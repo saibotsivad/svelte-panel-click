@@ -55,46 +55,63 @@ component emits one of two events:
 ## example
 
 This component might be used for a modal popup that is hidden
-when click events outside the modal happen:
+when click events outside the modal happen (see
+[the demo](https://svelte.technology/repl?version=2.8.0&gist=45704f9c9abdc261489d43628f3a931c)):
 
 ```html
-<p>Normal body text.</p>
-{#if visible}
-	<PanelClick
-		on:clickExternal="externalClickHandler(event)"
-		on:clickInternal="internalClickHandler(event)"
-	>
-		<p>Text inside the panel.</p>
-		<button on:click="set({ visible: false })">
-			Hide Panel
-		</button>
-	</PanelClick>
-{/if}
-<p>More normal body text.</p>
-<button
-	ref:button
-	on:click="set({ visible: true })"
+<p>This text is not inside the panel.</p>
+<p>If you click the button, it will reveal the panel.</p>
+
+<PanelClick
+    on:clickExternal="externalClickHandler(event)"
+    on:clickInternal="internalClickHandler(event)"
 >
-	Show Panel
+    {#if visible}
+        <div class="panel">
+            <p>This text is inside the panel.</p>
+            <p>
+                If you click the button or outside the panel it
+                will hide, but if you click elsewhere inside the
+                panel, it won't hide.
+            </p>
+            <button on:click="set({ visible: false })">
+                Hide the Panel
+            </button>
+        </div>
+    {/if}
+</PanelClick>
+
+<button
+    ref:button
+    on:click="set({ visible: true })"
+>
+    Show the Panel
 </button>
 
 <script>
-import PanelClick from 'svelte-panel-click'
+import PanelClick from 'svelte-panel-click@1.0.0'
 export default {
-	components: { PanelClick },
-	methods: {
-		externalClickHandler(event) {
-			if (event.target !== this.refs.button) {
-				// the click was *not* on the "Show Panel" button
-				this.set({ visible: false })
-			}
-		},
-		internalClickHandler(event) {
-			// the click happened inside the panel
-		}
-	}
+    components: { PanelClick },
+    methods: {
+        externalClickHandler(event) {
+            if (event.target !== this.refs.button) {
+                // the click was *not* on the "Show Panel" button
+                this.set({ visible: false })
+            }
+        },
+        internalClickHandler(event) {
+            // the click happened inside the panel
+        }
+    }
 }
 </script>
+
+<style>
+div.panel {
+    border: 1px solid black;
+    padding: 15px;
+}
+</style>
 ```
 
 ## license
