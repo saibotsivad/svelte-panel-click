@@ -8,21 +8,38 @@ The normal way: `npm install --save svelte-panel-click`
 
 ## use
 
-As a Svelte component:
+As a Svelte component (see the [demo here](https://svelte.technology/repl?version=2.8.0&gist=57609eb9f4c2d64f510e30e3e2c846e2)):
 
 ```html
-<PanelClick
-	on:clickExternal="click handler for external clicks"
-	on:clickInternal="click handler for internal clicks"
+<SveltePanelClick
+	on:clickExternal="set({ lastClick: 'outside' })"
+	on:clickInternal="set({ lastClick: 'inside' })"
 >
-	<p>Inner panel text.</p>
-</PanelClick>
+	<p class="inside-the-panel">
+		Click anywhere inside this box to trigger an internal click, or
+		outside the box to trigger an external click.
+	</p>
+</SveltePanelClick>
+
+{#if lastClick}
+	<p>You last clicked {lastClick}.</p>
+{/if}
+
 <script>
-import PanelClick from 'svelte-panel-click'
-export default {
-	components: { PanelClick }
-}
+	import SveltePanelClick from 'svelte-panel-click@1.0.0'
+	export default {
+		components: {
+			SveltePanelClick
+		}
+	}
 </script>
+
+<style>
+	p.inside-the-panel {
+		border: 1px solid black;
+		padding: 15px;
+	}
+</style>
 ```
 
 ## api
