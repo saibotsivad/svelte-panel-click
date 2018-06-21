@@ -14,7 +14,9 @@ Change categories are:
 * `Fixed` for any bug fixes.
 * `Security` to invite users to upgrade in case of vulnerabilities.
 
-## [Unreleased]
+## [1.0.0] - 2018-06-01
+### Changed
+- Updated to support Svelte 2! 🙌 This is a *breaking* change.
 
 ## [0.2.1] - 2018-03-08
 ### Added
@@ -26,6 +28,6 @@ Change categories are:
 ### Added
 - The sweet new `svelte` tag to the package.json file.
 
-[Unreleased]: https://github.com/saibotsivad/svelte-panel-click/compare/v2.0.2...HEAD
+[1.0.0]: https://github.com/saibotsivad/svelte-panel-click/compare/v0.2.1...v1.0.0
 [0.2.1]: https://github.com/saibotsivad/svelte-panel-click/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/saibotsivad/svelte-panel-click/compare/v0.1.8...v0.2.0
