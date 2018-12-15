@@ -14,6 +14,12 @@ Change categories are:
 * `Fixed` for any bug fixes.
 * `Security` to invite users to upgrade in case of vulnerabilities.
 
+## [1.0.3] - 2018-12-15
+### Security
+- Previously tests were run with `tape-run`, which used `electron` and
+  introduced quite a few security issues. With some help from @conduitry
+  and the Svelte community, tests are now run using `jsdom`.
+
 ## [1.0.2] - 2018-06-01
 ### Added
 - The readme now points to an additional REPL demo.
