@@ -1,0 +1,13 @@
+<p id="external">external element</p>
+<PanelClick
+	on:clickInternal="fire('inside')"
+	on:clickExternal="fire('outside')"
+>
+	<p id="internal">internal element</p>
+</PanelClick>
+
+<script>
+export default {
+	components: { PanelClick: './PanelClick.html' }
+}
+</script>

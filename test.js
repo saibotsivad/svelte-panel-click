@@ -1,81 +1,28 @@
-const tape = require('tape')
-const svelte = require('svelte')
+require('register-svelte-require')(require('svelte'))
+const fs = require('fs')
+const test = require('tape')
+const { JSDOM } = require('jsdom')
 
-window.PanelClick = require('./dist/PanelClick.cjs.js')
+const PanelClickTest = require('./PanelClickTest.html')
 
-const clearBrowser = () => {
-	document.write(`
-	<html>
-		<head>
-			<title>Testing yo</title>
-		</head>
-		<body>
-			<div id="outside-target">wat</div>
-			<div id="component-target"></div>
-		</body>
-	</html>
-	`)
-	document.close()
-}
+const dom = new JSDOM()
+global.window = dom.window
+global.document = dom.window.document
 
-const createComponent = () => svelte.create(`
-<h1>Check it</h1>
-<p>
-	<PanelClick
-		on:clickInternal="fire('inside')"
-		on:clickExternal="fire('outside')"
-	>
-		<h2 id="totally-clickable">You can click me</h2>
-	</PanelClick>
-</p>
+test('clicking inside and outside the panel', t => {
+	t.plan(2)
 
-<script>
-export default {
-	components: { PanelClick }
-}
-<\/script>
-`, {
-	dev: true
-})
+	const component = new PanelClickTest({ target: global.document.body })
 
-const test = (description, fn) => tape(description, t => {
-	clearBrowser()
-	try {
-		fn(t)
-	} catch (e) {
-		t.error(e)
-		t.end()
-	}
-})
+	component.on('inside', () => {
+		t.pass('an internal click happened')
+		component.on('outside', () => {
+			t.pass('an external click happened')
+			t.end()
+		})
 
-test(`Clicking inside the component`, t => {
-	t.timeoutAfter(1000)
-	t.plan(1)
-
-	const TestComponent = createComponent()
-
-	const component = new TestComponent({
-		target: document.getElementById('component-target')
+		dom.window.document.querySelector('#external').click()
 	})
 
-	component.on('inside', () => t.pass(`Clicked inside`))
-	component.on('outside', () => t.fail(`Clicked outside`))
-
-	document.getElementById('totally-clickable').click()
-})
-
-test(`Clicking outside the component`, t => {
-	t.timeoutAfter(1000)
-	t.plan(1)
-
-	const TestComponent = createComponent()
-
-	const component = new TestComponent({
-		target: document.getElementById('component-target')
-	})
-
-	component.on('inside', () => t.fail(`Clicked inside`))
-	component.on('outside', () => t.pass(`Clicked outside`))
-
-	document.getElementById('outside-target').click()
+	dom.window.document.querySelector('#internal').click()
 })
