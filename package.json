@@ -17,7 +17,7 @@
     "build:module": "svelte compile --format=es PanelClick.html > dist/PanelClick.es2015.js",
     "build:legacy": "svelte compile --format=cjs PanelClick.html > dist/PanelClick.cjs.js",
     "build:html": "cp PanelClick.html dist/PanelClick.html",
-    "test": "npm run prebuild && npm run build:legacy && browserify test.js | tape-run"
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",
@@ -34,10 +34,10 @@
   },
   "homepage": "https://github.com/saibotsivad/svelte-panel-click#readme",
   "devDependencies": {
-    "browserify": "16.2.2",
+    "jsdom": "^13.1.0",
+    "register-svelte-require": "0.0.0",
     "svelte": "2.8.0",
     "svelte-cli": "3.0.0",
-    "tape": "4.9.1",
-    "tape-run": "4.0.0"
+    "tape": "4.9.1"
   }
 }
